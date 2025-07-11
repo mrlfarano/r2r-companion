@@ -1,0 +1,121 @@
+<context>
+# Overview  
+This product is a web app designed for players of **Risk of Rain 2** to identify item appearances quickly, understand their effects, and receive build recommendations. It targets both new and experienced players who want to improve gameplay efficiency without needing to memorize hundreds of items. Its value is in **reducing confusion mid-run**, **enhancing build strategy**, and **increasing game enjoyment**.
+
+# Core Features
+
+### **1. Item Identifier**
+
+- **What it does:** Displays images and names of all Risk of Rain 2 items with their descriptions and stack effects.
+- **Why it's important:** Players often forget what items do mid-run, leading to suboptimal decisions.
+- **How it works:** A database of item images and data is displayed in a searchable, filterable UI.
+
+### **2. Build Recommendations**
+
+- **What it does:** Provides suggested builds based on chosen character and current item pool.
+- **Why it's important:** Helps players maximize synergy and survive longer runs.
+- **How it works:** Simple logic rules (or in the future ML-based recommendations) match current items to optimal builds per survivor.
+
+### **3. Visual Search (Future Enhancement)**
+
+- **What it does:** Uses computer vision to identify items from screenshots or camera input.
+- **Why it's important:** Faster real-time recognition without browsing lists.
+- **How it works:** Integrates with an image classification model trained on item icons.
+
+# User Experience
+
+### **User Personas**
+
+- **New Player:** Wants to understand what each item does quickly to keep up with friends.
+- **Intermediate Player:** Wants optimal build suggestions to improve runs.
+- **Veteran Player:** Uses it for quick reminders or to theorycraft.
+
+### **Key User Flows**
+
+1. **Open app → Select character → Browse item list → View item details**
+2. **Open app → Select character → View recommended builds → Review items needed → Check item images.**
+
+### **UI/UX Considerations**
+
+- **Mobile-first design** for quick phone lookup during runs.
+- **Clear item images** with color-coded rarity borders.
+- **Minimalist UI** with dark theme to match game aesthetic.
+- **Quick search bar** with auto-suggestions.
+  </context>
+
+<PRD>
+# Technical Architecture  
+### **System Components**
+- Frontend: React.js web app
+- Backend: Node.js API serving item data and build recommendations
+- Database: MongoDB (items, builds, user preferences)
+
+### **Data Models**
+
+- **Item:** id, name, description, image_url, rarity, stack_effects
+- **Build:** id, survivor, recommended_items, synergy_notes
+
+### **APIs and Integrations**
+
+- REST API endpoints for items and builds
+- (Future) Integration with TensorFlow.js or external CV model for visual search
+
+### **Infrastructure Requirements**
+
+- Vercel or Netlify for frontend hosting
+- MongoDB Atlas for database
+- Express.js server on Render or similar PaaS
+
+# Development Roadmap
+
+### **Phase 1: MVP**
+
+- Static item database and images
+- Item list display with search/filter
+- Basic build recommendations per character
+
+### **Phase 2: Enhancements**
+
+- User accounts for build saving
+- Advanced build logic based on current items selected
+- Improved UI/UX styling and animations
+
+### **Phase 3: Visual Search**
+
+- Integrate CV model for item recognition
+- Upload screenshot or camera input to detect items
+
+# Logical Dependency Chain
+
+1. **Setup Backend & Database** – Create item/build schemas and REST endpoints.
+2. **Frontend Item Display** – Build searchable UI for item list.
+3. **Build Recommendation Module** – Implement recommendation logic.
+4. **User Accounts (Enhancement)** – Add auth and user build storage.
+5. **Visual Search Integration (Advanced)** – Add CV model integration and UI.
+
+# Risks and Mitigations
+
+### **Technical Challenges**
+
+- **CV model training complexity.** Mitigation: Use transfer learning with existing models.
+- **Item database completeness.** Mitigation: Scrape or manually enter all items from official wiki.
+
+### **MVP Scope Clarity**
+
+- Risk: Overbuilding features before first release.
+- Mitigation: Focus Phase 1 strictly on static item display and basic build recommendations.
+
+### **Resource Constraints**
+
+- Single developer workload.
+- Mitigation: Scope features atomically, reuse open source libraries where possible.
+
+# Appendix
+
+- **Research Findings:** Players often alt-tab to the wiki mid-run, interrupting gameplay.
+- **Technical Specifications:**
+  - React + Tailwind CSS for frontend
+  - Node.js + Express.js for API
+  - MongoDB for data storage
+  - Optional: TensorFlow.js for in-browser CV
+    </PRD>
